@@ -1,32 +1,28 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <app-login></app-login>
+    <app-clientes></app-clientes>
     <router-view />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Login from './views/Login/Login.vue';
+import Clientes from './views/Clientes/Clientes.vue';
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default {
+  components: {
+    'app-login': Login,
+    'app-clientes': Clientes
+  },
+  created () {
+      this.$store.dispatch('tryAutoLogin');
   }
 }
+</script>
+
+<style lang="sass">
+  body, html 
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 </style>

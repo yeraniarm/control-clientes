@@ -1,0 +1,138 @@
+@mixin font-th
+    color: gray;
+    font-weight: bold;
+
+.clientes
+    background-color: #DBEEFF;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    overflow-y: auto;
+
+.table-title
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    align-items: center;
+
+h2
+    font-weight: normal;
+    text-align: center;
+    margin-left: auto;
+
+.add
+    background-color: #5580e9;
+    color: #FFF;
+    width: 95px;
+    height: 39px;
+    float: right;
+    border: none;
+    margin-right: 20px;
+    margin-left: auto;
+
+.add:hover
+    background: #80A5FF;
+
+.add:active
+    background: #3B68D5;
+
+.table
+    width: 800px;
+    background: #fff;
+    position: absolute;
+    margin-top: 5%;
+
+table
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+
+th, td
+    border-bottom: 1px solid #ddd;
+    padding: 0px 24px 0px 24px;
+
+th
+    color: gray;
+    text-align: center;
+
+td
+    text-align: center;
+
+.button
+    border-radius: 50%;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    margin: 5px;
+
+.delete
+    background-color: #FF1900;
+    color: #fff;
+
+.delete:hover
+    background: #B52B24;
+
+.delete:active
+    background: #FF1900;
+
+.edit:hover
+    background: #D7D9E0;
+
+.edit:active
+    background: #fff;
+
+@media only screen and (max-width: 800px)
+    .table
+        width: 90%;
+        margin-top: 8%;
+
+    table 
+        border: 0;
+
+    table thead 
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    
+    table tr
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    
+    table td
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+        padding-right: 20px;
+    
+    table td:before
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    
+    table td:last-child
+        border-bottom: 0;
+    
+    td:nth-of-type(1):before 
+        content: "Id"; 
+        @include font-th;
+    td:nth-of-type(2):before 
+        content: "Nombre"; 
+        @include font-th;
+    td:nth-of-type(3):before
+        content: "RFC"; 
+        @include font-th;
+    td:nth-of-type(4):before    
+        content: "Teléfono";
+        @include font-th;
