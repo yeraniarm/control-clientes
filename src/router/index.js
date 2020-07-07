@@ -9,6 +9,7 @@ import ClientsPage from '../views/Clientes/Clientes.vue';
 Vue.use(VueRouter);
 
 const routes = [
+    { path: '/', component: LoginPage },
     { path: '/login', component: LoginPage, name: 'login' }, 
     { path: '/clientes', component: ClientsPage, name: 'clientes', 
       beforeEnter(to, from, next) {
