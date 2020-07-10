@@ -1,24 +1,28 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-import store from '../store/index.js';
+import store from "../store/index.js";
 
-import LoginPage from '../views/Login/Login.vue';
-import ClientsPage from '../views/Clientes/Clientes.vue';
- 
+import LoginPage from "../views/Login/Login.vue";
+import ClientsPage from "../views/Clientes/Clientes.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
-    { path: '/', component: LoginPage },
-    { path: '/login', component: LoginPage, name: 'login' }, 
-    { path: '/clientes', component: ClientsPage, name: 'clientes', 
-      beforeEnter(to, from, next) {
-        if(store.state.idToken){
-          next();
-        } else {
-          next('/login');
-        }
-      }}
+  { path: "/", component: LoginPage },
+  { path: "/login", component: LoginPage, name: "login" },
+  {
+    path: "/clientes",
+    component: ClientsPage,
+    name: "clientes",
+    beforeEnter(to, from, next) {
+      if (store.state.idToken) {
+        next();
+      } else {
+        next("/login");
+      }
+    }
+  }
 ];
 
 const router = new VueRouter({

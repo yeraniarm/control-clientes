@@ -1,32 +1,32 @@
 <template>
-    <header id="header">
-        <nav>
-            <ul>
-                <li>
-                    <router-link to="/clientes">HOME</router-link>
-                </li>
-                 <li>
-                    <router-link to="/clientes">ABOUT</router-link>
-                </li>
-                <li>
-                    <router-link to="/clientes">CLIENTES</router-link>
-                </li>
-                 <li>
-                   <button class="logout" @click="onLogout">SALIR</button>
-                </li>
-            </ul>
-        </nav>
-    </header>
-</template> 
+  <header id="header">
+    <nav>
+      <ul>
+        <li>
+          <router-link to="/clientes">HOME</router-link>
+        </li>
+        <li>
+          <router-link to="/clientes">ABOUT</router-link>
+        </li>
+        <li>
+          <router-link to="/clientes">CLIENTES</router-link>
+        </li>
+        <li>
+          <button class="logout" @click="onLogout">SALIR</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</template>
 
 <script>
 export default {
-    methods: {
-    onLogout () {
-      this.$store.dispatch('logout');
+  methods: {
+    onLogout() {
+      this.$store.dispatch("logout");
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -34,7 +34,7 @@ export default {
   height: 56px;
   display: flex;
   justify-content: center;
-  background:inherit;
+  background: inherit;
   padding: 0 20px;
 }
 

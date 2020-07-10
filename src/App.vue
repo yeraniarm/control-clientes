@@ -7,22 +7,22 @@
 </template>
 
 <script>
-import Login from './views/Login/Login.vue';
-import Clientes from './views/Clientes/Clientes.vue';
+import Login from "./views/Login/Login.vue";
+import Clientes from "./views/Clientes/Clientes.vue";
 
 export default {
   components: {
-    'app-login': Login,
-    'app-clientes': Clientes
+    "app-login": Login,
+    "app-clientes": Clientes
   },
-  created () {
-      this.$store.dispatch('tryAutoLogin');
+  created() {
+    this.$store.dispatch("tryAutoLogin");
   }
-}
+};
 </script>
 
 <style lang="sass">
-  body, html 
-    margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+body, html
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 </style>
