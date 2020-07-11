@@ -94,14 +94,14 @@ export default new Vuex.Store({
           let clients = res.data.data;
           let clientsNewArray = [];
           clients.forEach(client => {
-            if (!client.celular) {
-              client.celular = "-";
+            if (!client.telefono) {
+              client.telefono = "-";
             }
             client = {
               id: client.id,
               nombre: client.nombre,
               rfc: client.rfc,
-              telefono: client.celular
+              telefono: client.telefono
             };
             clientsNewArray.push(client);
           });

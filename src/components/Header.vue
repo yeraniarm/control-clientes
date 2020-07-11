@@ -3,16 +3,16 @@
     <nav>
       <ul>
         <li>
-          <router-link to="/clientes">HOME</router-link>
+          <router-link to="/clientes" class="hover">HOME</router-link>
         </li>
         <li>
-          <router-link to="/clientes">ABOUT</router-link>
+          <router-link to="/clientes" class="hover">ABOUT</router-link>
         </li>
         <li>
-          <router-link to="/clientes">CLIENTES</router-link>
+          <router-link to="/clientes" class="hover">CLIENTES</router-link>
         </li>
         <li>
-          <button class="logout" @click="onLogout">SALIR</button>
+          <button class="logout hover" @click="onLogout">SALIR</button>
         </li>
       </ul>
     </nav>
@@ -29,20 +29,18 @@ export default {
 };
 </script>
 
-<style scoped>
-#header {
+<style lang="sass" scoped>
+#header
   height: 56px;
   display: flex;
   justify-content: center;
   background: inherit;
   padding: 0 20px;
-}
 
-nav {
+nav
   height: 100%;
-}
 
-ul {
+ul
   list-style: none;
   margin: 0;
   padding: 0;
@@ -50,29 +48,23 @@ ul {
   display: flex;
   flex-flow: row;
   align-items: center;
-}
 
-li {
+li
   margin: 0 16px;
-}
 
-li a {
+li a
   text-decoration: none;
   color: black;
   font-weight: bold;
-}
 
-/* li a:hover,
-  li a:active,
-  li a.router-link-active {
-    color: #3B68D5;
-  } */
+li .hover:hover,
+li .hover:active
+  color: #3B68D5;
 
-.logout {
+.logout
   background-color: transparent;
   border: none;
   font: inherit;
   cursor: pointer;
   font-weight: bold;
-}
 </style>

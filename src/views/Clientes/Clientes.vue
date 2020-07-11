@@ -5,7 +5,10 @@
       <div class="table-title">
         <br />
         <h2>Tabla de Clientes</h2>
-        <button class="add"><i class="fas fa-plus"></i> AGREGAR</button>
+        <button class="add" @click="showModal">
+          <i class="fas fa-plus"></i> AGREGAR
+        </button>
+        <app-modal v-show="isModalVisible" @close="closeModal"></app-modal>
       </div>
       <table>
         <thead>
