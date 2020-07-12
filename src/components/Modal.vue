@@ -25,7 +25,7 @@
             <div class="client-form">
               <form @submit.prevent="onSubmit">
                 <div class="client-form-input">
-                  <label for="name">Nombre:</label>
+                  <label for="name">Nombre</label>
                   <input type="text" v-model="name" required />
                 </div>
                 <div class="client-form-input">
@@ -101,7 +101,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-y: scroll;
 
 .modal
     background: #ffffff;
@@ -109,6 +108,8 @@ export default {
     overflow-x: auto;
     display: flex;
     flex-direction: column;
+    height: 80%;
+    overflow-y: auto;
 
 .modal-header
     border-bottom: 1px solid #eeeeee;

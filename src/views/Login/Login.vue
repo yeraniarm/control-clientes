@@ -10,7 +10,7 @@
     <div class="login-form">
       <form @submit.prevent="onSubmit">
         <div class="login-form-input">
-          <label for="user">Usuario:</label>
+          <label for="user">Usuario</label>
           <input type="text" v-model="user" :placeholder="userIcon" required />
         </div>
         <div class="login-form-input">
