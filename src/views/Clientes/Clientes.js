@@ -16,16 +16,20 @@ export default {
     };
   },
   computed: {
-    storageData() {
+    storageData () {
       return this.$store.getters.getClients;
     }
   },
   methods: {
-    showModal() {
+    showModal () {
       this.isModalVisible = true;
     },
-    closeModal() {
+    closeModal () {
       this.isModalVisible = false;
+    }, 
+    deleteClient (index) {
+      console.log(index);
+      this.$store.dispatch("deleteClient", index);
     }
   }
 };

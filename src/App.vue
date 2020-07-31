@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <app-login></app-login>
-    <app-clientes></app-clientes>
+    <!-- <app-clientes></app-clientes> -->
     <router-view />
   </div>
 </template>
 
 <script>
 import Login from "./views/Login/Login.vue";
-import Clientes from "./views/Clientes/Clientes.vue";
+/* import Clientes from "./views/Clientes/Clientes.vue"; */
 
 export default {
   components: {
     "app-login": Login,
-    "app-clientes": Clientes
+    /* "app-clientes": Clientes */
   },
   created() {
     this.$store.dispatch("tryAutoLogin");

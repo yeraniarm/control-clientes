@@ -1,4 +1,4 @@
-import CryptoJS from "crypto-js";
+//import CryptoJS from "crypto-js";
 
 export default {
   data() {
@@ -16,8 +16,8 @@ export default {
         password: this.password
       };
       console.log(formData);
-      let pass = CryptoJS.MD5(formData.password).toString();
-      this.$store.dispatch("login", { user: formData.user, pass });
+      //let pass = CryptoJS.MD5(formData.password).toString();
+      this.$store.dispatch("login", { user: formData.user, pass:formData.password });
     }
   }
 };

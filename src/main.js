@@ -5,9 +5,8 @@ import axios from "axios";
 import router from "./router";
 import store from "./store";
 
-axios.defaults.baseURL =
-  "https://reclutamiento.vue.contro-clientes.hmhsistemas.com.mx/api";
-//axios.defaults.headers.common['token'] = 'token';
+axios.defaults.baseURL = "https://vibrant-choucroute-83564.herokuapp.com/api";
+//"https://reclutamiento.vue.contro-clientes.hmhsistemas.com.mx/api";
 
 Vue.config.productionTip = false;
 

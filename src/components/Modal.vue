@@ -23,40 +23,40 @@
         <section class="modal-body" id="modalDescription">
           <slot name="body">
             <div class="client-form">
-              <form @submit.prevent="onSubmit">
-                <div class="client-form-input">
+              <form @submit="addClient">
+                <div class="client-form-input required">
                   <label for="name">Nombre</label>
-                  <input type="text" v-model="name" required />
+                  <input type="text" v-model="nombre" required />
                 </div>
-                <div class="client-form-input">
+                <div class="client-form-input required">
                   <label for="rfc">RFC</label>
                   <input type="text" v-model="rfc" required />
                 </div>
-                <div class="client-form-input">
+                <div class="client-form-input required">
                   <label for="tel">Teléfono</label>
-                  <input type="text" v-model="tel" />
+                  <input type="text" v-model="telefono" required />
                 </div>
                 <div class="client-form-input">
                   <label for="city">Ciudad</label>
-                  <input type="text" v-model="city" />
+                  <input type="text" v-model="ciudad" />
                 </div>
                 <div class="client-form-input">
                   <label for="address">Domicilio</label>
-                  <input type="text" v-model="address" />
+                  <input type="text" v-model="domicilio" />
                 </div>
                 <div class="client-form-input">
                   <label for="col">Colonia</label>
-                  <input type="text" v-model="col" />
+                  <input type="text" v-model="colonia" />
                 </div>
                 <div class="client-form-input">
                   <label for="cp">Código Postal</label>
-                  <input type="text" v-model="cp" />
+                  <input type="text" v-model="codigoPostal" />
                 </div>
-                <div class="client-form-input">
+                <div class="client-form-input required">
                   <label for="email">Correo</label>
-                  <input type="email" v-model="email" />
+                  <input type="email" v-model="correo" required/>
                 </div>
-                <button class="add-client" type="submit">
+                <button class="add-client" type="submit" @click="addClient">
                   Agregar cliente
                 </button>
               </form>
@@ -74,12 +74,32 @@ export default {
   methods: {
     close() {
       this.$emit("close");
+    },
+    addClient () {
+      let clientData = {
+        nombre: this.nombre, 
+        rfc: this.rfc, 
+        telefono: this.telefono, 
+        ciudad: this.ciudad, 
+        domicilio: this.domicilio, 
+        colonia: this.colonia, 
+        codigoPostal: this.codigoPostal, 
+        correo: this.correo
+      }
+      console.log(clientData);
+      this.$store.dispatch("storeClient", clientData);
     }
   },
   data() {
     return {
-      user: "",
-      password: ""
+      nombre: "",
+      rfc: "", 
+      telefono: "", 
+      ciudad: "", 
+      domicilio: "", 
+      colonia: "", 
+      codigoPostal: "", 
+      correo: ""
     };
   }
 };
@@ -90,6 +110,10 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: column;
+  
+.required label::after
+  content: "*";
+  color: red;
 
 .modal-backdrop
     position: fixed;

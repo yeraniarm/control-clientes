@@ -22,7 +22,7 @@
             <td v-for="(cell, index) in row" :key="index">{{ cell }}</td>
             <td>
               <button class="button edit"><i class="fas fa-pen"></i></button>
-              <button class="button delete">
+              <button class="button delete" @click="deleteClient(row.id)">
                 <i class="fas fa-trash"></i>
               </button>
             </td>

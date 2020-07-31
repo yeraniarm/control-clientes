@@ -34,23 +34,22 @@ export default new Vuex.Store({
         })
         .then(res => {
           console.log(res);
-          console.log(res.data.status);
-          //Validación con status porque la api siempre regresa un 200 aunque la autenticación no sea correcta
-          if (res.data.status) {
-            let token = res.data.data.token;
+          if (res.status === 200) {
+            let token = res.data.token;
             commit("authUser", {
               token,
-              userId: res.data.data.idUsuario
+              userId: res.data.data._id
             });
             console.log(token);
             localStorage.setItem("token", token);
-            localStorage.setItem("userId", res.data.data.idUsuario);
+            localStorage.setItem("userId", res.data.data._id);
             router.replace("/clientes");
-          } else {
-            alert(res.data.error);
-          }
+          } 
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log(err);
+          alert(err.response.data.error);
+        });
     },
     tryAutoLogin({ commit }) {
       const token = localStorage.getItem("token");
@@ -78,7 +77,9 @@ export default new Vuex.Store({
         .post("/clientes/crear", clientData, {
           headers: { token: state.idToken }
         })
-        .then(res => console.log(res))
+        .then(res => {
+          console.log(res);
+        })
         .catch(err => console.log(err));
     },
     fetchClient({ commit, state }) {
@@ -98,16 +99,27 @@ export default new Vuex.Store({
               client.telefono = "-";
             }
             client = {
-              id: client.id,
+              id: client._id,
               nombre: client.nombre,
               rfc: client.rfc,
               telefono: client.telefono
             };
-            clientsNewArray.push(client);
+            clientsNewArray.unshift(client);
           });
           commit("storedClients", clientsNewArray);
         })
         .catch(err => console.log(err));
+    }, 
+    deleteClient ({ state }, index) {
+      if (!state.idToken) {
+        return;
+      }
+      axios
+        .delete(`/clientes/eliminar/${index}`, {
+          headers: { token: state.idToken }
+        }).then(res => {
+          console.log(res);
+        }).catch(err => console.log(err));
     }
   },
   getters: {
