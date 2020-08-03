@@ -17,7 +17,10 @@ export default {
       };
       console.log(formData);
       //let pass = CryptoJS.MD5(formData.password).toString();
-      this.$store.dispatch("login", { user: formData.user, pass:formData.password });
+      this.$store.dispatch("login", {
+        user: formData.user,
+        pass: formData.password
+      });
     }
   }
 };

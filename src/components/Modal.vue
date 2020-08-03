@@ -54,7 +54,7 @@
                 </div>
                 <div class="client-form-input required">
                   <label for="email">Correo</label>
-                  <input type="email" v-model="correo" required/>
+                  <input type="email" v-model="correo" required />
                 </div>
                 <button class="add-client" type="submit" @click="addClient">
                   Agregar cliente
@@ -70,22 +70,22 @@
 
 <script>
 export default {
-  name: "modal",
+  name: "modal", 
   methods: {
     close() {
       this.$emit("close");
     },
-    addClient () {
+    addClient() {
       let clientData = {
-        nombre: this.nombre, 
-        rfc: this.rfc, 
-        telefono: this.telefono, 
-        ciudad: this.ciudad, 
-        domicilio: this.domicilio, 
-        colonia: this.colonia, 
-        codigoPostal: this.codigoPostal, 
+        nombre: this.nombre,
+        rfc: this.rfc,
+        telefono: this.telefono,
+        ciudad: this.ciudad,
+        domicilio: this.domicilio,
+        colonia: this.colonia,
+        codigoPostal: this.codigoPostal,
         correo: this.correo
-      }
+      };
       console.log(clientData);
       this.$store.dispatch("storeClient", clientData);
     }
@@ -93,12 +93,12 @@ export default {
   data() {
     return {
       nombre: "",
-      rfc: "", 
-      telefono: "", 
-      ciudad: "", 
-      domicilio: "", 
-      colonia: "", 
-      codigoPostal: "", 
+      rfc: "",
+      telefono: "",
+      ciudad: "",
+      domicilio: "",
+      colonia: "",
+      codigoPostal: "",
       correo: ""
     };
   }
@@ -110,7 +110,7 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: column;
-  
+
 .required label::after
   content: "*";
   color: red;

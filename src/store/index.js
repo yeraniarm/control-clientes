@@ -44,7 +44,7 @@ export default new Vuex.Store({
             localStorage.setItem("token", token);
             localStorage.setItem("userId", res.data.data._id);
             router.replace("/clientes");
-          } 
+          }
         })
         .catch(err => {
           console.log(err);
@@ -95,31 +95,34 @@ export default new Vuex.Store({
           let clients = res.data.data;
           let clientsNewArray = [];
           clients.forEach(client => {
-            if (!client.telefono) {
+            /* if (!client.telefono) {
               client.telefono = "-";
-            }
+            } */
             client = {
               id: client._id,
               nombre: client.nombre,
               rfc: client.rfc,
               telefono: client.telefono
             };
-            clientsNewArray.unshift(client);
+            clientsNewArray.push(client);
           });
           commit("storedClients", clientsNewArray);
         })
         .catch(err => console.log(err));
-    }, 
-    deleteClient ({ state }, index) {
+    },
+    deleteClient({ state }, index) {
       if (!state.idToken) {
         return;
       }
       axios
         .delete(`/clientes/eliminar/${index}`, {
           headers: { token: state.idToken }
-        }).then(res => {
+        })
+        .then(res => {
           console.log(res);
-        }).catch(err => console.log(err));
+          this.dispatch("fetchClient");
+        })
+        .catch(err => console.log(err));
     }
   },
   getters: {
