@@ -10,7 +10,8 @@ export default new Vuex.Store({
   state: {
     idToken: null,
     userId: null,
-    clients: null
+    clients: null, 
+    client: null
   },
   mutations: {
     authUser(state, userData) {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     storedClients(state, clientsArray) {
       state.clients = clientsArray;
+    }, 
+    storedClient(state, client) {
+      state.client = client;
     }
   },
   actions: {
@@ -95,9 +99,6 @@ export default new Vuex.Store({
           let clients = res.data.data;
           let clientsNewArray = [];
           clients.forEach(client => {
-            /* if (!client.telefono) {
-              client.telefono = "-";
-            } */
             client = {
               id: client._id,
               nombre: client.nombre,
@@ -107,8 +108,29 @@ export default new Vuex.Store({
             clientsNewArray.push(client);
           });
           commit("storedClients", clientsNewArray);
+          commit("storedClient", clients);
         })
         .catch(err => console.log(err));
+    },
+    updateClient({ state }, index, data) {
+      if (!state.idToken) {
+        return;
+      }
+      axios
+        .put(
+          `/clientes/modificar/${index}`,
+          {
+            headers: { token: state.idToken }
+          },
+          data
+        )
+        .then(res => {
+          console.log(res);
+          this.dispatch("fetchClient");
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     deleteClient({ state }, index) {
       if (!state.idToken) {
@@ -128,6 +150,9 @@ export default new Vuex.Store({
   getters: {
     getClients(state) {
       return state.clients;
+    }, 
+    getClient(state) {
+      return state.client;
     }
   },
   modules: {}
