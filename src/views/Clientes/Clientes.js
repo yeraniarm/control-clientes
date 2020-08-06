@@ -20,7 +20,7 @@ export default {
       codigoPostal: "",
       correo: "", 
       modalTitle: "", 
-      submitButton: `<span @click="addClient"></span>Agregar cliente`
+      addClientButton: ""
     };
   },
   computed: {
@@ -32,10 +32,18 @@ export default {
     showModal() {
       this.isModalVisible = true;
       this.modalTitle = "Datos";
-      this.submitButton =  `<span @click="addClient"></span>Agregar cliente`;
+      this.addClientButton = true;
     },
     closeModal() {
       this.isModalVisible = false;
+      this.nombre = "";
+      this.rfc = "";
+      this.telefono = "";
+      this.ciudad = "";
+      this.domicilio = "";
+      this.colonia = "";
+      this.codigoPostal = "";
+      this.correo = "";
     },
     addClient() {
       let clientData = {
@@ -52,10 +60,10 @@ export default {
       this.$store.dispatch("storeClient", clientData);
     },
     modifyClient(index) {
-      this.showModal();
+      this.isModalVisible = true;
+      this.addClientButton = false;
       this.modalTitle = "Editar datos";
       const clientes = this.$store.getters.getClient.filter(cliente => cliente._id == index);
-      console.log(clientes[0]._id);
       this.nombre = clientes[0].nombre;
       this.rfc = clientes[0].rfc;
       this.telefono = clientes[0].telefono;
@@ -64,10 +72,10 @@ export default {
       this.colonia = clientes[0].colonia;
       this.codigoPostal = clientes[0].codigoPostal;
       this.correo = clientes[0].correo;
-      this.submitButton = `<span @click="updateClient(${index})"></span>Actualizar cliente`;
+      localStorage.setItem('clientId', index);
     },
-    updateClient(index) {
-      let clientData = {
+    updateClient() {
+      let data = {
         nombre: this.nombre,
         rfc: this.rfc,
         telefono: this.telefono,
@@ -77,9 +85,7 @@ export default {
         codigoPostal: this.codigoPostal,
         correo: this.correo
       };
-      console.log(clientData);
-      console.log(index);
-      this.$store.dispatch("updateClient",index,clientData);
+      this.$store.dispatch("updateClient",data);
     },
     deleteClient(index) {
       console.log(index);

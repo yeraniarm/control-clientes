@@ -37,14 +37,12 @@ export default new Vuex.Store({
           pass: authData.pass
         })
         .then(res => {
-          console.log(res);
           if (res.status === 200) {
             let token = res.data.token;
             commit("authUser", {
               token,
               userId: res.data.data._id
             });
-            console.log(token);
             localStorage.setItem("token", token);
             localStorage.setItem("userId", res.data.data._id);
             router.replace("/clientes");
@@ -83,6 +81,7 @@ export default new Vuex.Store({
         })
         .then(res => {
           console.log(res);
+          this.dispatch("fetchClient");
         })
         .catch(err => console.log(err));
     },
@@ -112,25 +111,21 @@ export default new Vuex.Store({
         })
         .catch(err => console.log(err));
     },
-    updateClient({ state }, index, data) {
+    updateClient({ state }, data) {
       if (!state.idToken) {
         return;
       }
+      const index = localStorage.getItem("clientId");
+      console.log(index);
       axios
-        .put(
-          `/clientes/modificar/${index}`,
-          {
-            headers: { token: state.idToken }
-          },
-          data
-        )
+        .put(`/clientes/modificar/${index}`, data, {
+          headers: { token: state.idToken }
+        })
         .then(res => {
           console.log(res);
           this.dispatch("fetchClient");
         })
-        .catch(err => {
-          console.log(err);
-        });
+        .catch(err => console.log(err));
     },
     deleteClient({ state }, index) {
       if (!state.idToken) {

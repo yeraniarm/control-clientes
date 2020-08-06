@@ -54,7 +54,8 @@
                         <label for="email">Correo</label>
                         <input type="email" v-model="correo" required />
                       </div>
-                      <button class='add-client' type='submit' v-html="submitButton"></button >
+                      <button v-if="addClientButton" class='add-client' type='submit' @click='addClient'>Agregar cliente</button>
+                      <button v-else class='add-client' type='submit' @click='updateClient'>Actualizar cliente</button>
                     </form>
                   </div>
                 </slot>
