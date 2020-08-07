@@ -10,7 +10,7 @@ export default new Vuex.Store({
   state: {
     idToken: null,
     userId: null,
-    clients: null, 
+    clients: null,
     client: null
   },
   mutations: {
@@ -24,7 +24,7 @@ export default new Vuex.Store({
     },
     storedClients(state, clientsArray) {
       state.clients = clientsArray;
-    }, 
+    },
     storedClient(state, client) {
       state.client = client;
     }
@@ -94,7 +94,6 @@ export default new Vuex.Store({
           headers: { token: state.idToken }
         })
         .then(res => {
-          console.log(res);
           let clients = res.data.data;
           let clientsNewArray = [];
           clients.forEach(client => {
@@ -145,7 +144,7 @@ export default new Vuex.Store({
   getters: {
     getClients(state) {
       return state.clients;
-    }, 
+    },
     getClient(state) {
       return state.client;
     }

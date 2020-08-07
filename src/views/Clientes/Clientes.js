@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       titles: ["Id", "Nombre", "RFC", "Teléfono"],
-      isModalVisible: false, 
+      isModalVisible: false,
       nombre: "",
       rfc: "",
       telefono: "",
@@ -18,8 +18,8 @@ export default {
       domicilio: "",
       colonia: "",
       codigoPostal: "",
-      correo: "", 
-      modalTitle: "", 
+      correo: "",
+      modalTitle: "",
       addClientButton: ""
     };
   },
@@ -56,14 +56,15 @@ export default {
         codigoPostal: this.codigoPostal,
         correo: this.correo
       };
-      console.log(clientData);
       this.$store.dispatch("storeClient", clientData);
     },
     modifyClient(index) {
       this.isModalVisible = true;
       this.addClientButton = false;
       this.modalTitle = "Editar datos";
-      const clientes = this.$store.getters.getClient.filter(cliente => cliente._id == index);
+      const clientes = this.$store.getters.getClient.filter(
+        cliente => cliente._id == index
+      );
       this.nombre = clientes[0].nombre;
       this.rfc = clientes[0].rfc;
       this.telefono = clientes[0].telefono;
@@ -72,7 +73,7 @@ export default {
       this.colonia = clientes[0].colonia;
       this.codigoPostal = clientes[0].codigoPostal;
       this.correo = clientes[0].correo;
-      localStorage.setItem('clientId', index);
+      localStorage.setItem("clientId", index);
     },
     updateClient() {
       let data = {
@@ -85,10 +86,9 @@ export default {
         codigoPostal: this.codigoPostal,
         correo: this.correo
       };
-      this.$store.dispatch("updateClient",data);
+      this.$store.dispatch("updateClient", data);
     },
     deleteClient(index) {
-      console.log(index);
       this.$store.dispatch("deleteClient", index);
     }
   }
